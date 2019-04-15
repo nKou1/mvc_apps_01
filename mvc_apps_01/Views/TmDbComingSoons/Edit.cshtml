@@ -1,0 +1,59 @@
+﻿@model mvc_apps_01.Models.TmDbComingSoon
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>TmDbComingSoon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <input asp-for="MovieId" class="form-control" readonly="readonly" />
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseDate" class="control-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Popularity" class="control-label"></label>
+                <input asp-for="Popularity" class="form-control" />
+                <span asp-validation-for="Popularity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BackdropPath" class="control-label"></label>
+                <input asp-for="BackdropPath" class="form-control" />
+                <span asp-validation-for="BackdropPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PosterPath" class="control-label"></label>
+                <input asp-for="PosterPath" class="form-control" />
+                <span asp-validation-for="PosterPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href='javascript:history.go(-1)'>Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

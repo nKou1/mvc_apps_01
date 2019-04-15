@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  mvc_apps_01:
+    image: ${DOCKER_REGISTRY-}mvcapps01
+    build:
+      context: .
+      dockerfile: mvc_apps_01/Dockerfile

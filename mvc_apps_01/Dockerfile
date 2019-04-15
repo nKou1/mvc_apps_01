@@ -1,0 +1,20 @@
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM microsoft/dotnet:2.1-sdk AS build
+WORKDIR /src
+COPY mvc_apps_01/mvc_apps_01.csproj mvc_apps_01/
+RUN dotnet restore mvc_apps_01/mvc_apps_01.csproj
+COPY . .
+WORKDIR /src/mvc_apps_01
+RUN dotnet build mvc_apps_01.csproj -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish mvc_apps_01.csproj -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "mvc_apps_01.dll"]
